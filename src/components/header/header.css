@@ -1,0 +1,37 @@
+.headerWrapper {
+    width: 85vw;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    & span {
+        font-size: 50px;
+        cursor: default;
+    }
+
+    .icons {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+
+        .igIcon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            width: 50px;
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        .fbIcon {
+            margin-right: 15px;
+        }
+
+        .fbIcon:hover, .igIcon:hover {
+            cursor: pointer;
+        }
+    }
+}

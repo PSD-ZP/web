@@ -1,0 +1,47 @@
+.navigationWrapper {
+    width: 85vw;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #56ACC8;
+    margin-bottom: 40px;
+
+    .navigationTabs {
+        height: 100%;
+        width: 600px;
+        display: flex;
+
+        .tab {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 200px;
+            font-size: 30px;
+            color: white;
+        }
+
+        .tab:hover {
+            color: black;
+            background-color: white;
+            cursor: pointer;
+        }
+    }
+
+    .loginButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        font-size: 30px;
+        color: white;
+        margin-right: 50px;
+    }
+
+    .loginButton:hover {
+        color: black;
+        /*background-color: white;*/
+        cursor: pointer;
+    }
+}

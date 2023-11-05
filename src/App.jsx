@@ -1,5 +1,6 @@
 import axios from 'axios';
 import './App.css'
+import {MainPage} from "./pages/main-page/MainPage.jsx";
 
 const URL = 'https://pdv-zp-backend.azurewebsites.net/Weather/GetWeatherByCoordinates';
 const data = {
@@ -18,12 +19,10 @@ async function fetchData() {
 function App() {
     return (
         <>
-            <h1>
-                Pustime deti von?
-            </h1>
-            <button onClick={fetchData}>
-                Fetch data
-            </button>
+            <MainPage />
+            {/*<button onClick={fetchData}>*/}
+            {/*    Fetch data*/}
+            {/*</button>*/}
         </>
     )
 }

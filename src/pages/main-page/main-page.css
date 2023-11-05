@@ -1,0 +1,9 @@
+.mainPanels {
+    width: 85vw;
+    display: flex;
+    justify-content: space-between;
+
+    .filler {
+        width: 45%;
+    }
+}

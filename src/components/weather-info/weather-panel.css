@@ -1,0 +1,55 @@
+.weatherPanelWrapper {
+    width: 45%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .weatherPanelHeader {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 50px;
+
+        & span {
+            font-size: 40px;
+            cursor: default;
+        }
+    }
+
+    .weatherInfo {
+        display: flex;
+        height: 350px;
+        flex-direction: column;
+        background-color: #56ACC8;
+        color: white;
+
+        border-radius: 4%;
+
+        & span {
+            font-size: 55px;
+            cursor: default;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        .weatherRow {
+            display: flex;
+            justify-content: space-between;
+
+            .weatherRowLeft, .weatherRowRight {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .weatherRowRight {
+                margin-right: 80px;
+                border-left: 2px white solid;
+
+                .vietor_vystrahy {
+                    margin-top: 30px;
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+}
