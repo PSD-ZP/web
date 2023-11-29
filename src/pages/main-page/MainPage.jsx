@@ -3,6 +3,7 @@ import './main-page.css'
 import {Header} from "../../components/header/Header.jsx";
 import {Navigation} from "../../components/navigation/Navigation.jsx";
 import {WeatherPanel} from "../../components/weather-info/WeatherPanel.jsx";
+import DressupPanel from "../../components/dressup-info/DressupPanel.jsx";
 import {useStore} from "../../Store.js";
 import {getWeatherOfLastHours} from "../../api/weather-api.js";
 
@@ -24,8 +25,8 @@ export function MainPage() {
             <Navigation />
             <div className='mainPanels'>
                 { forecast ? <WeatherPanel/> : <p>Načítavajú sa dáta</p> }
-                <div className='filler'>
-                    POZDRAVUJEM 2
+                <div className="dressupPanel">
+                  <DressupPanel />
                 </div>
             </div>
         </>
