@@ -1,35 +1,85 @@
-import './weather-panel.css'
+import { WeatherInfoCard } from '../weather-info-card/WeatherInfoCard';
+import {useState} from "react";
+import {useStore} from "../../Store.js";
+import {getWeatherOfLastHours} from "../../api/weather-api.js";
+import './weather-panel.css';
 
 export function WeatherPanel() {
+    const { forecast, setForecast } = useStore();
+    const { forecasts } = forecast;
+
+    const [location, setLocation] = useState('');
+    const [cardType, setCardType] = useState('temperature');
+
+    const hour = new Date(forecasts[0]["dateTime"]).getHours();
+    const formattedHour = (hour < 10 ? '0' : '') + hour + ':00';
+
+    const handleSubmit = async (event) => {
+        if (event.key !== 'Enter') {
+            return;
+        }
+
+        const forecastData = await getWeatherOfLastHours(null, null, location);
+
+        if (forecastData) {
+            setForecast(forecastData);
+        }
+    }
+
     return (
         <div className='weatherPanelWrapper'>
+
             <div className='weatherPanelHeader'>
                 <span>Aktuálne počasie</span>
-                <input placeholder='Vyhľadať iné mesto' />
+                <input
+                    placeholder='Vyhľadať iné mesto'
+                    onKeyDown={handleSubmit}
+                    value={location}
+                    onChange={(event) => setLocation(event.target.value)}
+                />
             </div>
-            <div className='weatherInfo'>
-                <span>Snina</span>
-                <div className='weatherRow'>
-                    {/*<img src='../../../public/icons8-clear-sky-64.png' alt='Oblačno' />*/}
-                    <div className='weatherRowLeft'>
-                        <span style={{ 'fontSize': '60px' }}>15 °C</span>
-                        <span style={{ 'fontSize': '25px' }}>Pondelok 10:00</span>
-                        <span style={{ 'fontSize': '25px' }}>Oblačno</span>
-                    </div>
-                    <div className='weatherRowRight'>
-                        <span style={{ 'fontSize': '20px' }}>Pravdepodobnosť zrážok: 2%</span>
-                        <span style={{ 'fontSize': '20px' }}>Vlhkosť: 70%</span>
-                        <div className='vietor_vystrahy'>
-                            <div>
-                                <span style={{ 'fontSize': '20px' }}>Vietor:</span>
+
+            { forecasts &&
+                <>
+                    <div className='weatherInfo'>
+                        <span>{forecast.location}</span>
+
+                        <div className='weatherRow'>
+
+                            <div style={{ 'display': 'flex', 'justifyContent': 'space-evenly', 'alignItems': 'center', 'flexGrow': '2'}}>
+                                <img src={`https:${forecasts[0]["iconUrl"]}`} alt='Oblačno' style={{ 'height': '128px', 'width': '128px' }} />
+                                <div className='weatherRowLeft'>
+                                    <span style={{ 'fontSize': '60px' }}>{forecasts[0]["temperature"]} °C</span>
+                                    <span style={{ 'fontSize': '25px' }}>{forecasts[0]["dayOfTheWeek"]} {formattedHour}</span>
+                                    <span style={{ 'fontSize': '25px' }}>{forecasts[0]["conditionDestription"]}</span>
+                                </div>
                             </div>
-                            <div>
-                                <span style={{ 'fontSize': '20px' }}>Výstrahy:</span>
+
+                            <div className='weatherRowRight'>
+                                <span style={{ 'fontSize': '20px' }}>Pravdepodobnosť zrážok: {forecasts[0]["chanceOfRain"]}%</span>
+                                <span style={{ 'fontSize': '20px' }}>Vlhkosť: {forecasts[0]["humidity"]}%</span>
+                                <span style={{ 'fontSize': '20px' }}>Vietor: {forecasts[0]["windKmph"]}km/h</span>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+
+                    <div className='nextFourHours'>
+                        <span style={{ 'fontSize': '32px' }}>Najbližšie 4 hodiny</span>
+
+                        <div className='nextFourHours_tabs'>
+                            <span className='nextFourHours_tab' onClick={() => setCardType('temperature')}>Teplota</span> | <span className='nextFourHours_tab' onClick={() => setCardType('chanceOfRain')}>Zrážky</span> | <span className='nextFourHours_tab' onClick={() => setCardType('windKmph')}>Vietor</span>
+                        </div>
+
+                        <div className='weatherInfoCards'>
+                            <WeatherInfoCard type={cardType} value={forecasts[0][cardType]} time={forecasts[0]["dateTime"]}/>
+                            <WeatherInfoCard type={cardType} value={forecasts[1][cardType]} time={forecasts[1]["dateTime"]}/>
+                            <WeatherInfoCard type={cardType} value={forecasts[2][cardType]} time={forecasts[2]["dateTime"]}/>
+                            <WeatherInfoCard type={cardType} value={forecasts[3][cardType]} time={forecasts[3]["dateTime"]}/>
+                        </div>
+                    </div>
+                </>
+            }
+
         </div>
     );
 }
