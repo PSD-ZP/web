@@ -2,10 +2,12 @@
     width: 85vw;
     display: flex;
     justify-content: space-between;
+    transition: filter 0.5s ease; /* Add a smooth transition for the blur */
 
     .filler {
         width: 45%;
     }
+    
 }
 .dressupPanel{
     width: 45vw;
@@ -16,3 +18,11 @@
         width: 45%;
     }
 }
+
+.overlay {
+    background: inherit;
+    filter: blur(5px);
+    pointer-events: none;
+    z-index: 1;
+    transition: filter 0.5s ease; /* Add a smooth transition for the blur */
+  }

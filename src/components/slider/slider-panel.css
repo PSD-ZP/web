@@ -1,0 +1,129 @@
+.sliderPanelWrapper {
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 35vw;
+    background-color: #56ACC8;
+    transition: left 0.3s ease-in-out;
+
+    & span {
+        font-size: 50px;
+        cursor: default;
+        color: #ffffff;
+    }
+}
+
+.headerWrapperSlider {
+    width: 85vw;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 28px;
+    margin-left: 4vw;
+}
+
+.sliderButton {
+    position: fixed;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh; 
+    background-color: #56ACC8;
+    top: 50vh;
+    left: 35vw;
+    height: 20vh;
+    width: 2vw;
+    transition: left 0.3s ease-in-out;
+}
+
+.buttonText {
+    transform: rotate(90deg); 
+    white-space: nowrap; 
+    color: white;
+}
+
+.arrowIndicator {
+    margin-top: 40px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 15px solid white;
+    transition: 0.8s ease-in-out;
+}
+  
+.arrowIndicator.left {
+    transform: rotate(-90deg);
+}
+  
+.arrowIndicator.right {
+    transform: rotate(90deg);
+}
+
+.sliderPanelWrapper.hidden {
+    left: -35vw;
+}
+
+.sliderPanelWrapper.visible {
+    left: 0vw;
+}
+
+.sliderButton.hidden {
+    left: 0vw;
+}
+
+.sliderButton.visible {
+    left: 35vw;
+}
+
+.sliderContentWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 28px;
+    margin-left: 4vw;
+}
+
+.sliderContentText {
+    font-size: 30px;
+    color: white;
+}
+
+.sliderContentText.location {
+    font-size: 40px;
+    margin-top: 20px;
+    width: 150px;
+}
+
+.sliderContentText.propstate {
+    font-size: 30px;
+}
+
+.sliderContentText.propstate.smaller {
+    font-size: 20px;
+}
+
+.sliderContentRowWrapper {
+    width: inherit;
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+}
+
+.sliderContentPropStateWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 10vw;
+    margin-left: 5vw;
+}
+
+.sliderImage {
+    
+}
+
+.horizontalLine {
+    height: 1px; 
+    background-color: white;
+    width: 26vw;
+}

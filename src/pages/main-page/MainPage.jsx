@@ -6,6 +6,7 @@ import {WeatherPanel} from "../../components/weather-info/WeatherPanel.jsx";
 import DressupPanel from "../../components/dressup-info/DressupPanel.jsx";
 import {useStore} from "../../Store.js";
 import {getWeatherOfLastHours} from "../../api/weather-api.js";
+import { SliderPanel } from "../../components/slider/SliderPanel.jsx";
 
 export function MainPage() {
     const { forecast, setForecast } = useStore();
@@ -29,6 +30,7 @@ export function MainPage() {
                   <DressupPanel />
                 </div>
             </div>
+            <SliderPanel/>
         </>
     );
 }
