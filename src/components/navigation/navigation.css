@@ -1,6 +1,7 @@
 .navigationWrapper {
+    min-width: 1280px;
     width: 85vw;
-    height: 50px;
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;

@@ -3,9 +3,10 @@ import {useState} from "react";
 import {useStore} from "../../Store.js";
 import {getWeatherOfLastHours} from "../../api/weather-api.js";
 import './weather-panel.css';
+import {getClothesByWeather} from "../../api/clothes-api.js";
 
 export function WeatherPanel() {
-    const { forecast, setForecast } = useStore();
+    const { forecast, setForecast, setClothes } = useStore();
     const { forecasts } = forecast;
 
     const [location, setLocation] = useState('');
@@ -19,7 +20,10 @@ export function WeatherPanel() {
             return;
         }
 
-        const forecastData = await getWeatherOfLastHours(null, null, location);
+        const forecastData = await getWeatherOfLastHours(null, null, 'Kosice');
+        const firstForecast = forecastData.forecasts[0];
+        const clothesData = await getClothesByWeather(firstForecast.temperature, firstForecast.windKmph, firstForecast.clouds, firstForecast.chanceOfRain, firstForecast.chanceOfSnow);
+        setClothes(clothesData);
 
         if (forecastData) {
             setForecast(forecastData);

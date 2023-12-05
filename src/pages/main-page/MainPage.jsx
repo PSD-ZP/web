@@ -6,13 +6,17 @@ import {WeatherPanel} from "../../components/weather-info/WeatherPanel.jsx";
 import DressupPanel from "../../components/dressup-info/DressupPanel.jsx";
 import {useStore} from "../../Store.js";
 import {getWeatherOfLastHours} from "../../api/weather-api.js";
+import {getClothesByWeather} from "../../api/clothes-api.js";
 
 export function MainPage() {
-    const { forecast, setForecast } = useStore();
+    const { forecast, clothes, setForecast, setClothes } = useStore();
 
     const fetchDataOnFirstRender = async () => {
-        const data = await getWeatherOfLastHours(null, null, 'Kosice');
+        let data = await getWeatherOfLastHours(null, null, 'Kosice');
         setForecast(data);
+        const firstForecast = data.forecasts[0];
+        data = await getClothesByWeather(firstForecast.temperature, firstForecast.windKmph, firstForecast.clouds, firstForecast.chanceOfRain, firstForecast.chanceOfSnow);
+        setClothes(data);
     }
 
     useEffect(() => {
@@ -23,12 +27,16 @@ export function MainPage() {
         <>
             <Header />
             <Navigation />
-            <div className='mainPanels'>
-                { forecast ? <WeatherPanel/> : <p>Načítavajú sa dáta</p> }
-                <div className="dressupPanel">
-                  <DressupPanel />
+            { forecast && clothes ? (
+                <div className='mainPanels'>
+                    <WeatherPanel/>
+                    <div className="dressupPanel">
+                        <DressupPanel />
+                    </div>
                 </div>
-            </div>
+            ) :
+                <p>Načítavajú sa dáta</p>
+            }
         </>
     );
 }

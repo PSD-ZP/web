@@ -2,17 +2,9 @@
     width: 85vw;
     display: flex;
     justify-content: space-between;
-
-    .filler {
-        width: 45%;
-    }
 }
+
 .dressupPanel{
     width: 45vw;
-    display: center;
     justify-content: space-between;
-
-    .filler {
-        width: 45%;
-    }
 }
