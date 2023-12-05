@@ -57,7 +57,7 @@ const DressupPanel = () => {
 
     const images = document.querySelectorAll('.dressupPanel-wrapper img');
 
-    images.forEach((image, index) => {
+    images.forEach((image) => {
       if (image.className === 'human' || image.className === 'clothes' || image.className.includes('baseLayer')) return;
 
       const currentPosition = parseFloat(window.getComputedStyle(image).left);

@@ -1,10 +1,16 @@
 import './slider-panel.css'
 import {useState} from "react";
 import {blurWebPage} from "../../api/blur-page.js";
+import {useDetectClickOutside} from "react-detect-click-outside";
 
 export function SliderPanel() {
-
     const [isVisible, setVisible] = useState(false);
+    const ref = useDetectClickOutside({ onTriggered: () => {
+        if (isVisible) {
+            blurWebPage();
+            setVisible(false);
+        }
+    }})
 
     const handleSliderClick = () => {
         blurWebPage();
@@ -12,7 +18,7 @@ export function SliderPanel() {
     };
 
     return (
-        <div className={`sliderPanelWrapper ${isVisible ? 'visible' : 'hidden'}`}>
+        <div className={`sliderPanelWrapper ${isVisible ? 'visible' : 'hidden'}`} ref={ref}>
            <div className='headerWrapperSlider'>
                 <span>
                     Pustíme deti von?
