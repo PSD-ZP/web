@@ -7,6 +7,7 @@ import DressupPanel from "../../components/dressup-info/DressupPanel.jsx";
 import {useStore} from "../../Store.js";
 import {getWeatherOfLastHours} from "../../api/weather-api.js";
 import {getClothesByWeather} from "../../api/clothes-api.js";
+import { SliderPanel } from "../../components/slider/SliderPanel.jsx";
 
 export function MainPage() {
     const { forecast, clothes, setForecast, setClothes } = useStore();
@@ -28,11 +29,14 @@ export function MainPage() {
             <Header />
             <Navigation />
             { forecast && clothes ? (
-                <div className='mainPanels'>
-                    <WeatherPanel/>
-                    <div className="dressupPanel">
-                        <DressupPanel />
+                <div>
+                    <div className='mainPanels'>
+                        <WeatherPanel/>
+                        <div className="dressupPanel">
+                            <DressupPanel />
+                        </div>
                     </div>
+                    <SliderPanel/>
                 </div>
             ) :
                 <p>Načítavajú sa dáta</p>
