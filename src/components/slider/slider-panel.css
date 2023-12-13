@@ -25,25 +25,27 @@
 }
 
 .sliderButton {
+    text-align: center;
+    cursor: pointer;
     position: fixed;
     display: flex;
     align-items: center; 
     justify-content: center;
     flex-direction: column;
-    height: 100vh; 
     background-color: #56ACC8;
-    top: 50vh;
+    top: calc(50vh - 110px);
     left: 35vw;
-    height: 20vh;
-    width: 2vw;
+    height: 220px;
+    width: 40px;
     transition: left 0.3s ease-in-out;
 }
 
 .buttonText {
-    transform: rotate(90deg); 
-    white-space: nowrap; 
+    margin-top: 30px;
+    transform: rotate(90deg);
+    font-size: 20px;
+    white-space: nowrap;
     color: white;
-    cursor: default;
 }
 
 .arrowIndicator {

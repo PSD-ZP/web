@@ -86,6 +86,10 @@
             font-size: 20px;
         }
 
+        .underlined {
+            text-decoration: underline #56ACC8;
+        }
+
         .nextFourHours_tab:hover {
             cursor: pointer;
             text-decoration: underline #56ACC8;

@@ -13,7 +13,7 @@ export const WeatherInfoCard = (props) => {
         unit = '%';
         icon = <img src='https://cdn.weatherapi.com/weather/64x64/day/263.png' alt='Zrážky' />
     } else if (type === 'windKmph') {
-        unit = 'km/h';
+        unit = 'm/s';
         icon = <img src='https://icons-for-free.com/iconfiles/png/64/cloud+weather+wind+icon-1320196574652316456.png' alt='Vietor' style={{ 'filter': 'invert(1)' }} />
     }
 
@@ -23,7 +23,7 @@ export const WeatherInfoCard = (props) => {
     return (
         <div className='weatherInfoCard'>
             { icon }
-            <span>{value} {unit}</span>
+            <span>{type === 'windKmph' ? Math.round(value * 0.27778 * 100) / 100 : value} {unit}</span>
             <span>{formattedHour}</span>
         </div>
     );

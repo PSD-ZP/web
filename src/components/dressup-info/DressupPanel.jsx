@@ -2,42 +2,42 @@ import React, { useState } from "react";
 import "./dressup-panel.css";
 import {useStore} from "../../Store.js";
 
-const mapImageToName = (name, layer) => {
+const mapImageToName = (name, layer = null, isPulsing = false) => {
   switch(name) {
     case 'Hrubé body':
       return <img
           src="/clothes/hrube_body.PNG"
-          className={`clothes ${layer} pulsing`}
+          className={`clothes ${layer} ${isPulsing && 'pulsing'}`}
           alt="Hrube body"
       />
     case 'Tenké body':
       return <img
           src="/clothes/tenke_body.PNG"
-          className={`clothes ${layer} pulsing`}
+          className={`clothes ${layer} ${isPulsing && 'pulsing'}`}
           alt="Tenke body"
       />
     case 'Zimná bunda':
       return <img
           src="/clothes/zimna_bunda.PNG"
-          className={`clothes ${layer} pulsing`}
+          className={`clothes ${layer} ${isPulsing && 'pulsing'}`}
           alt="Zimna bunda"
       />
     case 'Mikina':
       return <img
           src="/clothes/mikina.PNG"
-          className={`clothes ${layer} pulsing`}
+          className={`clothes ${layer} ${isPulsing && 'pulsing'}`}
           alt="Mikina"
       />
     case 'Prechodná bunda':
       return <img
           src="/clothes/prechodna_bunda.PNG"
-          className={`clothes ${layer} pulsing`}
+          className={`clothes ${layer} ${isPulsing && 'pulsing'}`}
           alt="Prechodna bunda"
       />
     case 'Softshellka':
       return <img
           src="/clothes/softshell.PNG"
-          className={`clothes ${layer} pulsing`}
+          className={`clothes ${layer} ${isPulsing && 'pulsing'}`}
           alt="Softshellka"
       />
     default:
@@ -74,6 +74,8 @@ const DressupPanel = () => {
     setTimeout(() => setIsClickable(true), 300);
   }
 
+  const layers = ['baseLayer', 'layer1', 'layer2'];
+
   return (
     <div className="dressup-panel" onClick={toggleImageMovement}>
       <div className="dressupPanel-wrapper">
@@ -92,9 +94,11 @@ const DressupPanel = () => {
             className={'clothes'}
             alt="Capica"
         />
-        { mapImageToName(body[0]['name'], 'baseLayer') }
-        { mapImageToName(body[1]['name'], 'layer1') }
-        { mapImageToName(body[2]['name'], 'layer2') }
+        {
+          body.map((bodyItem, index) => {
+            return mapImageToName(bodyItem['name'], layers[index], true);
+          })
+        }
       </div>
     </div>
   );

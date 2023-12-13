@@ -8,27 +8,41 @@ import {useStore} from "../../Store.js";
 import {getWeatherOfLastHours} from "../../api/weather-api.js";
 import {getClothesByWeather} from "../../api/clothes-api.js";
 import { SliderPanel } from "../../components/slider/SliderPanel.jsx";
+import {getPlaygroundInfo} from "../../api/playground-api.js";
+import {BarLoader} from "react-spinners";
 
 export function MainPage() {
-    const { forecast, clothes, setForecast, setClothes } = useStore();
+    const { forecast, clothes, playgroundInfo, setLocation, setForecast, setClothes, setPlaygroundInfo } = useStore();
 
-    const fetchDataOnFirstRender = async () => {
-        let data = await getWeatherOfLastHours(null, null, 'Kosice');
+    const fetchDataOnFirstRender = async (payload) => {
+        let data = await getWeatherOfLastHours(payload.lat, payload.lon, payload.location);
         setForecast(data);
+        setLocation(data.location);
+
         const firstForecast = data.forecasts[0];
         data = await getClothesByWeather(firstForecast.temperature, firstForecast.windKmph, firstForecast.clouds, firstForecast.chanceOfRain, firstForecast.chanceOfSnow);
         setClothes(data);
+
+        data = await getPlaygroundInfo(payload.lat, payload.lon, payload.location);
+        setPlaygroundInfo(data);
     }
 
     useEffect(() => {
-       fetchDataOnFirstRender();
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => fetchDataOnFirstRender({ lat: position.coords.latitude, lon: position.coords.longitude, location: null}),
+                () => fetchDataOnFirstRender({ lat: null, lon: null, location: 'Kosice' }),
+            );
+        } else {
+            console.log("Geolocation not supported");
+        }
     }, []);
 
     return (
         <>
             <Header />
             <Navigation />
-            { forecast && clothes ? (
+            { forecast && clothes && playgroundInfo ? (
                 <div>
                     <div className='mainPanels'>
                         <WeatherPanel/>
@@ -39,7 +53,10 @@ export function MainPage() {
                     <SliderPanel/>
                 </div>
             ) :
-                <p>Načítavajú sa dáta</p>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontSize: '32px' }}>
+                    <p>Načítavajú sa dáta</p>
+                    <BarLoader height={10} width={200} color='#56ACC8' />
+                </div>
             }
         </>
     );
