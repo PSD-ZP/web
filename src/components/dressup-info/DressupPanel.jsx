@@ -40,6 +40,57 @@ const mapImageToName = (name, layer = null, isPulsing = false) => {
           className={`clothes ${layer} ${isPulsing && 'pulsing'}`}
           alt="Softshellka"
       />
+    case 'Šiltovka':
+      return <img
+          src="/clothes/siltovka.PNG"
+          className={`clothes`}
+          alt="Siltovka"
+      />
+    case 'Zimna čiapka':
+      return <img
+          src="/clothes/zimna_ciapka.PNG"
+          className={`clothes`}
+          alt="Zimna ciapka"
+      />
+    case 'Sandále':
+      return <img
+          src="/clothes/sandale.PNG"
+          className={`clothes`}
+          alt="Sandale"
+      />
+    case 'Gumáky':
+      return <img
+          src="/clothes/gumaky.PNG"
+          className={`clothes`}
+          alt="Gumaky"
+      />
+    case 'Zimné topánky':
+      return <img
+          src="/clothes/zimne_topanky.PNG"
+          className={`clothes`}
+          alt="Zimne topanky"
+      />
+    case 'Tenisky':
+      return <img
+          src="/clothes/tenisky.PNG"
+          className={`clothes`}
+          alt="Tenisky"
+      />
+    case 'Rifle':
+      return <img
+          src="/clothes/rifle.PNG"
+          className={`clothes`}
+          alt="Rifle"
+      />
+    case 'Kraťasy':
+      return <img
+          src="/clothes/kratasy.PNG"
+          className={`clothes`}
+          alt="Kratasy"
+      />
+    case 'Tričko':
+    case 'NONE':
+      break;
     default:
       break;
   }
@@ -49,7 +100,7 @@ const DressupPanel = () => {
   const [moveRight, setMoveRight] = useState(true);
   const [isClickable, setIsClickable] = useState(true);
   const { clothes } = useStore();
-  const { body } = clothes;
+  const { head, body, legs, shoes } = clothes;
 
   const toggleImageMovement = () => {
     if (!isClickable) return;
@@ -79,21 +130,9 @@ const DressupPanel = () => {
   return (
     <div className="dressup-panel" onClick={toggleImageMovement}>
       <div className="dressupPanel-wrapper">
-        <img
-          src="/clothes/rifle.PNG"
-          className="human"
-          alt="Pajac"
-        />
-        <img
-          src="/clothes/zimne_topanky.PNG"
-          className={'clothes'}
-          alt="Boty"
-        />
-        <img
-            src="/clothes/zimna_ciapka.PNG"
-            className={'clothes'}
-            alt="Capica"
-        />
+        { mapImageToName(legs.some((x) => x['name'] === 'Kraťasy') ? 'Kraťasy' : 'Rifle') }
+        { mapImageToName(head[0]['name']) }
+        { mapImageToName(shoes[0]['name']) }
         {
           body.map((bodyItem, index) => {
             return mapImageToName(bodyItem['name'], layers[index], true);

@@ -7,14 +7,27 @@ import {useStore} from "../../Store.js";
 function getDryMessage(dryTime) {
     switch (dryTime) {
         case -1:
-            return 'Bude schnut viac ako 4 hodiny';
+            return 'Bude schnúť viac ako 4 hodiny';
         case 1:
         case 2:
         case 3:
         case 4:
-            return `Bude schnut ${dryTime} ${dryTime === 1 ? 'hodinu' : 'hodiny'}`;
+            return `Bude schnúť ${dryTime} ${dryTime === 1 ? 'hodinu' : 'hodiny'}`;
         default:
             return '';
+    }
+}
+
+function getDryState(dryTime) {
+    switch (dryTime) {
+        case -1:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+            return 'Mokro';
+        default:
+            return 'Sucho';
     }
 }
 
@@ -52,7 +65,7 @@ export function SliderPanel() {
                 <div className='sliderContentRowWrapper'>
                    <img className='sliderImage' src="/playground-items/smykalka.png" alt="Image Description" width={150} height={180}/>
                    <div className='sliderContentPropStateWrapper'>
-                       <div className='sliderContentText propstate'>Mokro</div>
+                       <div className='sliderContentText propstate'>{ getDryState(playgroundInfo[0].dryTime) }</div>
                        <div className='sliderContentText propstate smaller'>{ getDryMessage(playgroundInfo[0].dryTime) }</div>
                    </div>
                 </div>
@@ -62,7 +75,7 @@ export function SliderPanel() {
                 <div className='sliderContentRowWrapper'>
                     <img className='sliderImage' src="/playground-items/hojdacka.png" alt="Image Description" width={150} height={180}/>
                     <div className='sliderContentPropStateWrapper'>
-                        <div className='sliderContentText propstate'>Mokro</div>
+                        <div className='sliderContentText propstate'>{ getDryState(playgroundInfo[1].dryTime) }</div>
                         <div className='sliderContentText propstate smaller'>{ getDryMessage(playgroundInfo[1].dryTime) }</div>
                     </div>
                 </div>
@@ -72,7 +85,7 @@ export function SliderPanel() {
                 <div className='sliderContentRowWrapper'>
                     <img className='sliderImage' src="/playground-items/pieskovisko.png" alt="Image Description" width={150} height={180}/>
                     <div className='sliderContentPropStateWrapper'>
-                        <div className='sliderContentText propstate'>Mokro</div>
+                        <div className='sliderContentText propstate'>{ getDryState(playgroundInfo[2].dryTime) }</div>
                         <div className='sliderContentText propstate smaller'>{ getDryMessage(playgroundInfo[2].dryTime) }</div>
                     </div>
                 </div>
