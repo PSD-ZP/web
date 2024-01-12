@@ -1,6 +1,4 @@
 .weatherPanelWrapper {
-    min-width: 650px;
-    width: 30vw;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -54,7 +52,8 @@
             }
 
             .weatherRowRight {
-                margin-right: 60px;
+                /*padding-left: 10px;*/
+                margin-right: 40px;
                 border-left: 2px white solid;
 
                 .vietor_vystrahy {
@@ -100,6 +99,29 @@
             display: flex;
             justify-content: space-between;
             margin-top: 10px;
+        }
+    }
+}
+
+@media only screen and (max-width: 620px) {
+    .weatherPanelWrapper {
+        max-width: 100%;
+
+        .weatherInfoCards {
+            justify-content: center !important;
+            flex-wrap: wrap;
+        }
+
+        .weatherInfo {
+            height: 100% !important;
+        }
+
+        .weatherRow {
+            flex-direction: column;
+        }
+
+        .weatherRowRight {
+            border: none !important;
         }
     }
 }

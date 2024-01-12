@@ -16,3 +16,9 @@
 
     cursor: default;
 }
+
+@media only screen and (max-width: 620px) {
+    .weatherInfoCard {
+        margin: 10px;
+    }
+}

@@ -4,3 +4,9 @@
   overflow: hidden;
 }
 
+@media only screen and (max-width: 620px) {
+  :root {
+    overflow: scroll !important;
+  }
+}
+

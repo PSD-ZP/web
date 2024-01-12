@@ -21,4 +21,11 @@
     pointer-events: none;
     z-index: 1;
     transition: filter 0.5s ease; /* Add a smooth transition for the blur */
-  }
+}
+
+@media only screen and (max-width: 620px) {
+    .mainPanels {
+        display: flex;
+        flex-direction: column;
+    }
+}

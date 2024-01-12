@@ -14,7 +14,7 @@ export const WeatherInfoCard = (props) => {
         icon = <img src='https://cdn.weatherapi.com/weather/64x64/day/263.png' alt='Zrážky' />
     } else if (type === 'windKmph') {
         unit = 'm/s';
-        icon = <img src='https://icons-for-free.com/iconfiles/png/64/cloud+weather+wind+icon-1320196574652316456.png' alt='Vietor' style={{ 'filter': 'invert(1)' }} />
+        icon = <img src='public/wind.png' alt='Vietor' style={{ 'width': '50px', 'height': '50px' }} />
     }
 
     const hour = new Date(time).getHours();
