@@ -1,6 +1,18 @@
 @media only screen and (max-width: 620px) {
     .sliderPanelWrapper {
-        visibility: hidden;
+        width: 85vw !important;
+    }
+
+    .sliderPanelWrapper.hidden {
+        left: -85vw !important;
+    }
+
+    .sliderButton.visible {
+        left: 85vw !important;
+    }
+
+    .horizontalLine {
+        width: 76vw !important;
     }
 }
 
